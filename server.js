@@ -19,3 +19,5 @@ var root = {
 graphql(schema, '{ hello }', root).then((response) => {
     console.log(response);
 });
+
+//test
