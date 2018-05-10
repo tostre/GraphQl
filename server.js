@@ -21,3 +21,4 @@ graphql(schema, '{ hello }', root).then((response) => {
 });
 
 //test
+//test2
