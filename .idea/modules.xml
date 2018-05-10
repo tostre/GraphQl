@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GraphQl.iml" filepath="$PROJECT_DIR$/GraphQl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GraphQlProj.iml" filepath="$PROJECT_DIR$/GraphQlProj.iml" />
     </modules>
   </component>
 </project>
