@@ -9,8 +9,70 @@ var con = mysql.createConnection({
     database: "graphqldb"
 });
 
+
 var selectAll = "SELECT * FROM users";
 var selectHans = "SELECT "
+
+
+class Database {
+
+    constructor() {
+        this.connection = mysql.createConnection({
+            host: "localhost",
+            user: "root",
+            password: "",
+            database: "graphqldb"
+        });
+    }
+
+    query(sql, args) {
+        return new Promise( (resolve, reject) => {
+            this.connection.query(sql, args, (err, result) => {
+                if (err)
+                    return reject(err);
+                resolve(result);
+            } );
+        } );
+    }
+
+    close() {
+        return new Promise((resolve, reject) => {
+            this.connection.end( err => {
+                if (err)
+                    return reject(err);
+                resolve();
+            } );
+        } );
+    }
+}
+
+var pdb = new Database();
+
+function getUserName(args){
+    var name = "def";
+
+    return pdb.query(`SELECT name FROM users WHERE userId = 1`, args)
+        .then( result => {
+            // do smth with the result
+            //console.log(result[0].name);
+            name = result[0].name;
+        }).then( (result) => {result[0].name})
+
+}
+
+function test(){
+    console.log
+}
+
+
+
+
+
+
+
+
+
+
 
 function connectToDb(){
     con.connect(function(err) {
@@ -69,8 +131,7 @@ function fetchUser(id){
         //return result;
         //console.log(saveResult(result));
         //console.log(saveResult(result)[0].name);
-        //return saveResult(result);
-        return result;
+        return saveResult(result);
     })
 }
 
@@ -110,6 +171,7 @@ module.exports.getUserNameById = getUserNameById;
 module.exports.endConnection = endConnection;
 module.exports.fetchUser = fetchUser;
 module.exports.name = name;
+module.exports.getUserName = getUserName;
 
 function setUserId(resultId){
     userId = resultId;
