@@ -45,6 +45,11 @@ const BookType = new GraphQLObjectType({
 
 
 // GQL Server __________________________________________________________________________________________________________
+<<<<<<< HEAD
+=======
+
+// Die resolve-Funktion wird aufgerufen, wenn jemand nach den Daten fragt (in dem Fall, wenn einer nach dem Autor fragt)ll
+>>>>>>> 5bfd1ddce63b6991ebbb513ffc134c11a461febf
 module.exports = new GraphQLSchema({
     query: new GraphQLObjectType({
         name: "Query",
