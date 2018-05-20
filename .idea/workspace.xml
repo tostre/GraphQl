@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bddeac4c-71aa-4eeb-9786-74c6e499c5d9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gql.js" beforeDir="false" afterPath="$PROJECT_DIR$/gql.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphQl.js" beforeDir="false" afterPath="$PROJECT_DIR$/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdatabase.js" beforeDir="false" afterPath="$PROJECT_DIR$/pdatabase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schema.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,8 +35,8 @@
       <file leaf-file-name="gql.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gql.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="150" column="26" lean-forward="true" selection-start-line="150" selection-start-column="26" selection-end-line="150" selection-end-column="26" />
+            <state relative-caret-position="392">
+              <caret line="70" column="33" lean-forward="true" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
               <folding>
                 <element signature="n#Database#0" />
               </folding>
@@ -245,12 +239,12 @@
       <workItem from="1526543720699" duration="10831000" />
       <workItem from="1526568069648" duration="914000" />
       <workItem from="1526631962914" duration="6473000" />
-      <workItem from="1526810384784" duration="9101000" />
+      <workItem from="1526810384784" duration="14196000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57288000" />
+    <option name="totallyTimeSpent" value="62383000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1036" extended-state="6" />
@@ -290,6 +284,11 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/schema.js">
@@ -610,8 +609,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gql.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="150" column="26" lean-forward="true" selection-start-line="150" selection-start-column="26" selection-end-line="150" selection-end-column="26" />
+        <state relative-caret-position="392">
+          <caret line="70" column="33" lean-forward="true" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
           <folding>
             <element signature="n#Database#0" />
           </folding>

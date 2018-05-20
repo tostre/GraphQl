@@ -35,10 +35,61 @@ class Database {
 
 var database = new Database();
 
+const IngredientType = new GraphQLObjectType({
+    name: "Ingredient",
+    fields: {
+        id: {
+            type: GraphQLID,
+            resolve: (root) => {
+                return root[0].ingId;
+            }
+        },
+        name: {
+            type: GraphQLString,
+            resolve: (root) => {
+                return root[0].name;
+            }
+        }
+    }
+})
+
+const RecipeType = new GraphQLObjectType({
+    name: "Recipe",
+    fields: {
+        id: {
+            type: GraphQLID,
+            resolve: (root) => {
+                return root[0].recipeId;
+            }
+        },
+        name: {
+            type: GraphQLString,
+            resolve: (root) => {
+                console.log("ROOT IM RECIPE");
+                console.log(root);
+                if(root.constructor == Array){
+                    return root[0].name;
+                } else {
+                    return root.name;
+                }
+
+                //return root[0].name;
+                //return root.name;
+            }
+        },
+        rating: {
+            type: GraphQLInt,
+            resolve: (root) => {
+                return root[0].rating;
+            }
+        }
+    }
+})
+
 const UserType = new GraphQLObjectType({
     name: "User",
     fields: {
-        uId: {
+        id: {
             type: GraphQLID,
             resolve: (root) => {
                 return root[0].userId;
@@ -55,51 +106,50 @@ const UserType = new GraphQLObjectType({
             resolve: (root) => {
                 return root[0].rating;
             }
+        },
+        recipes: {
+            type: new GraphQLList(RecipeType),
+            resolve: (root) => {
+                return database.query(`SELECT recipeId FROM user_recipes WHERE userId = ${root[0].userId}`)
+                    .then((rows) => {
+                        var recipeIds = rows[0].recipeId;
+                        for(var i = 0; i < rows.length-1; i++){
+                            console.log("loop");
+                            recipeIds += " OR recipeId = ";
+                            recipeIds += rows[i+1].recipeId;
+                            console.log(recipeIds);
+                        }
+                        return recipeIds;
+                    }). then((recipeIds) => {
+                        return database.query(`SELECT * FROM recipes WHERE recipeId = ${recipeIds}`);
+                    }).then((rows) => {
+                        console.log("recipes:");
+                        console.log(rows);
+                        console.log("root");
+                        console.log(rows[0].name);
+
+                        var recipes = [
+                            {
+                                recipeId: 1,
+                                name: "reispfanne",
+                                rating: 2
+                            },
+                            {
+                                recipeId: 10,
+                                name: "burger",
+                                rating: 3
+                            }
+                        ]
+                        return rows;
+                    })
+            }
         }
     }
 })
 
-const RecipeType = new GraphQLObjectType({
-    name: "Recipe",
-    fields: {
-        rId: {
-            type: GraphQLID,
-            resolve: (root) => {
-                return root[0].recipeId;
-            }
-        },
-        name: {
-            type: GraphQLString,
-            resolve: (root) => {
-                return root[0].name;
-            }
-        },
-        rating: {
-            type: GraphQLInt,
-            resolve: (root) => {
-                return root[0].rating;
-            }
-        }
-    }
-})
 
-const IngredientType = new GraphQLObjectType({
-    name: "Ingredient",
-    fields: {
-        ingId: {
-            type: GraphQLID,
-            resolve: (root) => {
-                return root[0].ingId;
-            }
-        },
-        name: {
-            type: GraphQLString,
-            resolve: (root) => {
-                return root[0].name;
-            }
-        }
-    }
-})
+
+
 
 
 
@@ -112,12 +162,12 @@ module.exports = new GraphQLSchema({
             user: {
                 type: UserType,
                 args: {
-                    uId: {type: GraphQLInt},
+                    id: {type: GraphQLInt},
                     name: {type: GraphQLString},
                     rating: {type: GraphQLInt}
                 },
                 resolve: (root, args) => {
-                    return database.query(`SELECT * FROM users WHERE userId = ${args.uId}`)
+                    return database.query(`SELECT * FROM users WHERE userId = ${args.id}`)
                         .then((rows) => {
                             return rows;
                         })
@@ -126,13 +176,14 @@ module.exports = new GraphQLSchema({
             recipe: {
                 type: RecipeType,
                 args: {
-                    rId: {type: GraphQLInt},
+                    id: {type: GraphQLInt},
                     name: {type: GraphQLString},
                     rating: {type: GraphQLInt}
                 },
                 resolve: (root, args) => {
-                    return database.query(`SELECT * FROM recipes WHERE recipeId = ${args.rId}`)
+                    return database.query(`SELECT * FROM recipes WHERE recipeId = ${args.id}`)
                         .then((rows) => {
+                            console.log(rows);
                             return rows;
                         })
                 }
@@ -141,11 +192,11 @@ module.exports = new GraphQLSchema({
             ingredient: {
                 type: IngredientType,
                 args: {
-                    ingId: {type: GraphQLInt},
+                    id: {type: GraphQLInt},
                     name: {type: GraphQLString}
                 },
                 resolve: (root, args) => {
-                    return database.query(`SELECT * FROM ingredients WHERE ingId = ${args.ingId}`)
+                    return database.query(`SELECT * FROM ingredients WHERE ingId = ${args.id}`)
                         .then((rows) => {
                             return rows;
                         })
