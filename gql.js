@@ -127,19 +127,6 @@ const UserType = new GraphQLObjectType({
                         console.log(rows);
                         console.log("root");
                         console.log(rows[0].name);
-
-                        var recipes = [
-                            {
-                                recipeId: 1,
-                                name: "reispfanne",
-                                rating: 2
-                            },
-                            {
-                                recipeId: 10,
-                                name: "burger",
-                                rating: 3
-                            }
-                        ]
                         return rows;
                     })
             }
