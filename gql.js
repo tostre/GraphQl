@@ -67,12 +67,12 @@ const RecipeType = new GraphQLObjectType({
             resolve: (root) => {
                 console.log("ROOT IM RECIPE");
                 console.log(root);
-                if(root.constructor == Array){
-                    return root[0].name;
-                } else {
-                    return root.name;
-                }
-
+                // if(root.constructor == Array){
+                //     return root[0].name;
+                // } else {
+                //     return root.name;
+                // }
+                return root.name;
                 //return root[0].name;
                 //return root.name;
             }
@@ -183,8 +183,10 @@ module.exports = new GraphQLSchema({
                 resolve: (root, args) => {
                     return database.query(`SELECT * FROM recipes WHERE recipeId = ${args.id}`)
                         .then((rows) => {
-                            console.log(rows);
-                            return rows;
+                            console.log("rows 0");
+                            console.log(rows[0]);
+                            //return rows;
+                            return rows[0];
                         })
                 }
             },
